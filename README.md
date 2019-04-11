@@ -56,7 +56,7 @@ TensorFlow提供了很多识别模型，也就是已经用卷积神经网络训�
 
 你可以自行选择模型：如果是在移动设备上运行较低识别率（比如智能机和树莓派）可以使用SDD-MobileNet，如果要用在强劲PC上就用RCNN模型。
 
-我后面会用Faster-RCNN-Inception-V2，[从这里下载](http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz)。把下载文件解压到`~/pythonProjects/py3venv/models/research/object_detection`目录下：
+我后面会用Faster-RCNN-Inception-V2，[从这里下载](http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz)，文件有140多M，看你网络。把下载文件解压到`~/pythonProjects/py3venv/models/research/object_detection`目录下：
 ```
 xxx/object_detection>tar -xzvf faster_rcnn_inception_v2_coco_2018_01_28.tar.gz
 ```
@@ -64,7 +64,7 @@ xxx/object_detection>tar -xzvf faster_rcnn_inception_v2_coco_2018_01_28.tar.gz
 #### 2c. 下载本库
 把本库也下载到`~/pythonProjects/py3venv/models/research/object_detection`目录。这样目录结构就满足TensorFlow要求了。
 
-This repository contains the images, annotation data, .csv files, and TFRecords needed to train a "Pinochle Deck" playing card detector. You can use these images and data to practice making your own Pinochle Card Detector. It also contains Python scripts that are used to generate the training data. It has scripts to test out the object detection classifier on images, videos, or a webcam feed. You can ignore the \doc folder and its files; they are just there to hold the images used for this readme.
+库里包含图片、标记数据、csv文件和用于训练Pinochle Deck扑克牌的TFRcord文件。你可以用这些数据去训练其他分类器。库里还有一些python脚本可用于生成训练数据。还有个脚本是来测试训练效果的。\doc目录可以忽略，里面只是一些这个readme文件用到的图片。
 
 If you want to practice training your own "Pinochle Deck" card detector, you can leave all the files as they are. You can follow along with this tutorial to see how each of the files were generated, and then run the training. You will still need to generate the TFRecord files (train.record and test.record) as described in Step 4. 
 

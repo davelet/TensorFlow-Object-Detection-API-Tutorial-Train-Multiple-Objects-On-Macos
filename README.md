@@ -7,19 +7,19 @@
 本库是使用TensorFlow对象识别API进行多对象识别训练在Mac上的介绍。不同的TensorFlow版本可能有微小差别，但应该都可解决。原库还有一个基于1.5版本的YouTube视频教程可以看。
 **如果视频和本库有差别，已本库为准！**
 
-[![Link to my YouTube video!](https://raw.githubusercontent.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10/master/doc/YouTube%20video.jpg)](https://www.youtube.com/watch?v=Rgpfk6eYxJA)
+[通往YouTube视频](https://www.youtube.com/watch?v=Rgpfk6eYxJA)
 
 这个readme文件讲了如何一步步搭建并训练自己的分类器：
 1. [安装TensorFlow-GPU](#1-安装TensorFlow-GPU)（Mac不支持，放弃吧~）
 2. [建立工作文件夹并创建python虚拟环境](#2-建立工作文件夹并创建python虚拟环境)
-3. [Gathering and labeling pictures](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10#3-gather-and-label-pictures)
-4. [Generating training data](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10#4-generate-training-data)
-5. [Creating a label map and configuring training](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10#5-create-label-map-and-configure-training)
-6. [Training](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10#6-run-the-training)
-7. [Exporting the inference graph](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10#7-export-inference-graph)
-8. [Testing and using your newly trained object detection classifier](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10#8-use-your-newly-trained-object-detection-classifier)
+3. [收集并标记图片](#3-收集并标记图片)
+4. [生成训练数据](#4-generate-training-data)
+5. [创建标记并配置模型](#5-create-label-map-and-configure-training)
+6. [训练](#6-run-the-training)
+7. [导出结果](#7-export-inference-graph)
+8. [测试](#8-use-your-newly-trained-object-detection-classifier)
 
-[Appendix: Common Errors](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10#appendix-common-errors)
+[附录：常见问题](#appendix-common-errors)
 
 The repository provides all the files needed to train a "Pinochle Deck" playing card detector that can accurately detect nines, tens, jacks, queens, kings, and aces. The tutorial describes how to replace these files with your own files to train a detection classifier for whatever your heart desires. It also has Python scripts to test your classifier out on an image, video, or webcam feed.
 
@@ -153,7 +153,7 @@ Once you have stepped all the way through the script, you should see two labeled
   <img src="doc/jupyter_notebook_dogs.jpg">
 </p>
 
-### 3. Gather and Label Pictures
+### 3. 收集并标记图片
 Now that the TensorFlow Object Detection API is all set up and ready to go, we need to provide the images it will use to train a new detection classifier.
 
 #### 3a. Gather Pictures

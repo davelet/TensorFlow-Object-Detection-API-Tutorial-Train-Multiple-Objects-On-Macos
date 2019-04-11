@@ -10,7 +10,7 @@
 [![Link to my YouTube video!](https://raw.githubusercontent.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10/master/doc/YouTube%20video.jpg)](https://www.youtube.com/watch?v=Rgpfk6eYxJA)
 
 这个readme文件讲了如何一步步搭建并训练自己的分类器：
-1. [安装TensorFlow-GPU](#1-安装TensorFlow-GPU（Mac不支持，放弃吧~）)
+1. [安装TensorFlow-GPU](#1-安装TensorFlow-GPU)（Mac不支持，放弃吧~）
 2. [建立工作文件夹并创建python虚拟环境](#2-建立工作文件夹并创建python虚拟环境)
 3. [Gathering and labeling pictures](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10#3-gather-and-label-pictures)
 4. [Generating training data](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10#4-generate-training-data)
@@ -38,7 +38,7 @@ TensorFlow-GPU allows your PC to use the video card to provide extra processing 
 
 
 ## Steps
-### 1. 安装TensorFlow-GPU（Mac不支持，放弃吧~）
+### 1. 安装TensorFlow-GPU
 
 
 ### 2. 建立工作文件夹并创建python虚拟环境

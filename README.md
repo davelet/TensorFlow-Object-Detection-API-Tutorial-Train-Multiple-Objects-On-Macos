@@ -38,18 +38,17 @@ TensorFlow-GPU使用显卡的张量计算能力进行训练，体验很好，原
 
 
 ### 2. 建立工作文件夹并创建python虚拟环境
-The TensorFlow Object Detection API requires using the specific directory structure provided in its GitHub repository. It also requires several additional Python packages, specific additions to the PATH and PYTHONPATH variables, and a few extra setup commands to get everything set up to run or train an object detection model. 
+TensorFlow Object Detection API要求使用与其GitHub库一致的目录结构。此外，还要求依赖一些额外的python包（要加到PATH或PYTHONPATH中）、使用一些额外的命令搭建环境或开始训练。
 
-This portion of the tutorial goes over the full set up required. It is fairly meticulous, but follow the instructions closely, because improper setup can cause unwieldy errors down the road.
+这部分指南覆盖了完整的环境搭建过程。虽然很细致了，但也要跟紧了，不然可能一步不慎，全盘报错。
 
-#### 2a. Download TensorFlow Object Detection API repository from GitHub
-Create a folder directly in C: and name it “tensorflow1”. This working directory will contain the full TensorFlow object detection framework, as well as your training images, training data, trained classifier, configuration files, and everything else needed for the object detection classifier.
+#### 2a. 从GitHub下载TensorFlow Object Detection API
+确定一个工作目录，比如我的是`~/pythonProjects/py3venv`。这个目录会用来存放全部TensorFlow对象识别的框架和训练图片、训练数据、训练结果、配置文件等等等等。
 
-Download the full TensorFlow object detection repository located at https://github.com/tensorflow/models by clicking the “Clone or Download” button and downloading the zip file. Open the downloaded zip file and extract the “models-master” folder directly into the C:\tensorflow1 directory you just created. Rename “models-master” to just “models”.
-(Note, this tutorial was done using this [GitHub commit](https://github.com/tensorflow/models/tree/079d67d9a0b3407e8d074a200780f3835413ef99) of the TensorFlow Object Detection API. If portions of this tutorial do not work, it may be necessary to download and use this exact commit rather than the most up-to-date version.)
+从 https://github.com/tensorflow/models 下载完整的库文件到工作目录并解压。会得到一个“models-master”目录，把它改名成“models”。
 
-#### 2b. Download the Faster-RCNN-Inception-V2-COCO model from TensorFlow's model zoo
-TensorFlow provides several object detection models (pre-trained classifiers with specific neural network architectures) in its [model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md). Some models (such as the SSD-MobileNet model) have an architecture that allows for faster detection but with less accuracy, while some models (such as the Faster-RCNN model) give slower detection but with more accuracy. I initially started with the SSD-MobileNet-V1 model, but it didn’t do a very good job identifying the cards in my images. I re-trained my detector on the Faster-RCNN-Inception-V2 model, and the detection worked considerably better, but with a noticeably slower speed.
+#### 2b. 从model zoo下载Faster-RCNN-Inception-V2-COCO模型
+TensorFlow提供了很多识别模型，也就是已经用卷积神经网络训练好的分类器，就是 [model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)。一些模型识别很快但是精度较低，比如SSD-MobileNet，而有的模型精度更高但识别很慢，比如Faster-RCNN。我刚开始用的SSD-MobileNet-V1，但是识别效果一般。我又重新用Faster-RCNN-Inception-V2进行了训练，识别效果好太多了，不过也慢多了。下图是对比：
 
 <p align="center">
   <img src="doc/rcnn_vs_ssd.jpg">
@@ -61,12 +60,6 @@ This tutorial will use the Faster-RCNN-Inception-V2 model. [Download the model h
 
 #### 2c. Download this tutorial's repository from GitHub
 Download the full repository located on this page (scroll to the top and click Clone or Download) and extract all the contents directly into the C:\tensorflow1\models\research\object_detection directory. (You can overwrite the existing "README.md" file.) This establishes a specific directory structure that will be used for the rest of the tutorial. 
-
-At this point, here is what your \object_detection folder should look like:
-
-<p align="center">
-  <img src="doc/object_detection_directory.jpg">
-</p>
 
 This repository contains the images, annotation data, .csv files, and TFRecords needed to train a "Pinochle Deck" playing card detector. You can use these images and data to practice making your own Pinochle Card Detector. It also contains Python scripts that are used to generate the training data. It has scripts to test out the object detection classifier on images, videos, or a webcam feed. You can ignore the \doc folder and its files; they are just there to hold the images used for this readme.
 

@@ -21,20 +21,16 @@
 
 [附录：常见问题](#appendix-common-errors)
 
-The repository provides all the files needed to train a "Pinochle Deck" playing card detector that can accurately detect nines, tens, jacks, queens, kings, and aces. The tutorial describes how to replace these files with your own files to train a detection classifier for whatever your heart desires. It also has Python scripts to test your classifier out on an image, video, or webcam feed.
+本库提供了完整的训练“Pinochle Deck”游戏中所用扑克牌的训练文件来训练识别九、十、钩、圈、凯、尖（游戏请自行[百度](https://www.google.com/search?q=Pinochle+Deck&oq=Pinochle+Deck&aqs=chrome..69i57j69i60.3947j0j4&sourceid=chrome&ie=UTF-8)）。并教了可用自己的文件替换3个问题来训练对象分类器，也提供了python脚本来测试图片、视频、摄像头。
 
-<p align="center">
-  <img src="doc/detector1.jpg">
-</p>
+## 简介
+本库的目的是介绍如何从头开始训练自己的卷积神经网络多对象检测分类器。在最后会有一个程序给图片、视频、摄像头中的对象画框并标明识别结果。
 
-## Introduction
-The purpose of this tutorial is to explain how to train your own convolutional neural network object detection classifier for multiple objects, starting from scratch. At the end of this tutorial, you will have a program that can identify and draw boxes around specific objects in pictures, videos, or in a webcam feed.
+网上有不少不错的类似教程，但是他们基本都是基于Linux的。原库作者的电脑是性能强劲、显卡优异的游戏PC机，装的windows系统，所以他创建了原库。
 
-There are several good tutorials available for how to use TensorFlow’s Object Detection API to train a classifier for a single object. However, these usually assume you are using a Linux operating system. If you’re like me, you might be a little hesitant to install Linux on your high-powered gaming PC that has the sweet graphics card you’re using to train a classifier. The Object Detection API seems to have been developed on a Linux-based OS. To set up TensorFlow to train a model on Windows, there are several workarounds that need to be used in place of commands that would work fine on Linux. Also, this tutorial provides instructions for training a classifier that can detect multiple objects, not just one.
+本库是基于Macos的，和Linux还是比较像的。
 
-The tutorial is written for Windows 10, and it will also work for Windows 7 and 8. The general procedure can also be used for Linux operating systems, but file paths and package installation commands will need to change accordingly. 
-
-TensorFlow-GPU allows your PC to use the video card to provide extra processing power while training, so it will be used for this tutorial. In my experience, using TensorFlow-GPU instead of regular TensorFlow reduces training time by a factor of about 8 (3 hours to train instead of 24 hours). Regular TensorFlow can also be used for this tutorial, but it will take longer. If you use regular TensorFlow, you do not need to install CUDA and cuDNN in Step 1. I used TensorFlow-GPU v1.5 while writing this tutorial, but it will likely work for future versions of TensorFlow.
+TensorFlow-GPU使用显卡的张量计算能力进行训练，体验很好，原库使用了。但是Mac并不支持。在他看来，使用GPU训练，加速引子可达8（也就是将CPU的计算时间从24小时缩短到3小时）。
 
 
 ## Steps

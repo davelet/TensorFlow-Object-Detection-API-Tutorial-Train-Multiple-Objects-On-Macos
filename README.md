@@ -14,7 +14,7 @@
 2. [建立工作文件夹并创建python虚拟环境](#2-建立工作文件夹并创建python虚拟环境)
 3. [收集并标记图片](#3-收集并标记图片)
 4. [生成训练数据](#4-生成训练数据)
-5. [创建标记并配置模型](#5-create-label-map-and-configure-training)
+5. [创建标记映射并配置模型](#5-创建标记映射并配置模型)
 6. [训练](#6-run-the-training)
 7. [导出结果](#7-export-inference-graph)
 8. [测试](#8-use-your-newly-trained-object-detection-classifier)
@@ -200,11 +200,11 @@ python generate_tfrecord.py --csv_input=images\test_labels.csv --image_dir=image
 ```
 会生成train.record 和 a test.record两个文件。
 
-### 5. Create Label Map and Configure Training
-The last thing to do before training is to create a label map and edit the training configuration file.
+### 5. 创建标记映射并配置模型
+训练前最后一件事是创建标记映射并编辑配置文件。
 
-#### 5a. Label map
-The label map tells the trainer what each object is by defining a mapping of class names to class ID numbers. Use a text editor to create a new file and save it as labelmap.pbtxt in the C:\tensorflow1\models\research\object_detection\training folder. (Make sure the file type is .pbtxt, not .txt !) In the text editor, copy or type in the label map in the format below (the example below is the label map for my Pinochle Deck Card Detector):
+#### 5a. 标记映射
+标记映射用于吧ID和物品名称关联起来。在\object_detection\training文件夹下创建文本文件labelmap.pbtxt并写入以下内容：
 ```
 item {
   id: 1
@@ -236,23 +236,7 @@ item {
   name: 'ace'
 }
 ```
-The label map ID numbers should be the same as what is defined in the generate_tfrecord.py file. For the basketball, shirt, and shoe detector example mentioned in Step 4, the labelmap.pbtxt file will look like:
-```
-item {
-  id: 1
-  name: 'basketball'
-}
-
-item {
-  id: 2
-  name: 'shirt'
-}
-
-item {
-  id: 3
-  name: 'shoe'
-}
-```
+ID要和generate_tfrecord.py中定义的完全一致。
 
 #### 5b. Configure training
 Finally, the object detection training pipeline must be configured. It defines which model and what parameters will be used for training. This is the last step before running training!

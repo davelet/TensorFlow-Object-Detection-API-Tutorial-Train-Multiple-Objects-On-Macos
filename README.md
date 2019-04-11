@@ -1,4 +1,5 @@
-# How To Train an Object Detection Classifier for Multiple Objects Using TensorFlow (GPU) on Windows 10
+# 如何在Mac上使用TensorFlow对象识别API进行多对象识别训练？
+本库fork自[TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10)
 
 ## Brief Summary
 *Last updated: 9/26/2018 with TensorFlow v1.10*

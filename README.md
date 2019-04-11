@@ -15,7 +15,7 @@
 3. [收集并标记图片](#3-收集并标记图片)
 4. [生成训练数据](#4-生成训练数据)
 5. [创建标记映射并配置模型](#5-创建标记映射并配置模型)
-6. [训练](#6-run-the-training)
+6. [开训](#6-开训)
 7. [导出结果](#7-export-inference-graph)
 8. [测试](#8-use-your-newly-trained-object-detection-classifier)
 
@@ -238,42 +238,37 @@ item {
 ```
 ID要和generate_tfrecord.py中定义的完全一致。
 
-#### 5b. Configure training
-Finally, the object detection training pipeline must be configured. It defines which model and what parameters will be used for training. This is the last step before running training!
+#### 5b. 配置模型
+最后编辑训练参数。
 
-Navigate to C:\tensorflow1\models\research\object_detection\samples\configs and copy the faster_rcnn_inception_v2_pets.config file into the \object_detection\training directory. Then, open the file with a text editor. There are several changes to make to the .config file, mainly changing the number of classes and examples, and adding the file paths to the training data.
+把object_detection\samples\configs下面的faster_rcnn_inception_v2_pets.config文件复制到object_detection\training目录。这个文件有几处需要修改：
 
-Make the following changes to the faster_rcnn_inception_v2_pets.config file. Note: The paths must be entered with single forward slashes (NOT backslashes), or TensorFlow will give a file path error when trying to train the model! Also, the paths must be in double quotation marks ( " ), not single quotation marks ( ' ).
+- 第9行num_classes，要分类的物品种数，改成6。
+- 110行fine_tune_checkpoint改为：
+  - fine_tune_checkpoint : "~/pythonProjects/py3venv/models/research/object_detection/faster_rcnn_inception_v2_coco_2018_01_28/model.ckpt"
 
-- Line 9. Change num_classes to the number of different objects you want the classifier to detect. For the above basketball, shirt, and shoe detector, it would be num_classes : 3 .
-- Line 110. Change fine_tune_checkpoint to:
-  - fine_tune_checkpoint : "C:/tensorflow1/models/research/object_detection/faster_rcnn_inception_v2_coco_2018_01_28/model.ckpt"
+- 126和128行改成：
+  - input_path : "~/pythonProjects/py3venv/models/research/object_detection/train.record"
+  - label_map_path: "~/pythonProjects/py3venv/models/research/object_detection/training/labelmap.pbtxt"
 
-- Lines 126 and 128. In the train_input_reader section, change input_path and label_map_path to:
-  - input_path : "C:/tensorflow1/models/research/object_detection/train.record"
-  - label_map_path: "C:/tensorflow1/models/research/object_detection/training/labelmap.pbtxt"
+- 132行num_examples是\images\test下面的图片数。
 
-- Line 132. Change num_examples to the number of images you have in the \images\test directory.
+- 140和142行，改成：
+  - input_path : "~/pythonProjects/py3venv/models/research/object_detection/test.record"
+  - label_map_path: "~/pythonProjects/py3venv/models/research/object_detection/training/labelmap.pbtxt"
 
-- Lines 140 and 142. In the eval_input_reader section, change input_path and label_map_path to:
-  - input_path : "C:/tensorflow1/models/research/object_detection/test.record"
-  - label_map_path: "C:/tensorflow1/models/research/object_detection/training/labelmap.pbtxt"
+现在万事俱备只欠东风了！
 
-Save the file after the changes have been made. That’s it! The training job is all configured and ready to go!
+### 6. 开训
 
-### 6. Run the Training
-**UPDATE 9/26/18:** 
-*As of version 1.9, TensorFlow has deprecated the "train.py" file and replaced it with "model_main.py" file. I haven't been able to get model_main.py to work correctly yet (I run in to errors related to pycocotools). Fortunately, the train.py file is still available in the /object_detection/legacy folder. Simply move train.py from /object_detection/legacy into the /object_detection folder and then continue following the steps below.*
-
-Here we go! From the \object_detection directory, issue the following command to begin training:
+在\object_detection下面执行命令：
 ```
-python train.py --logtostderr --train_dir=training/ --pipeline_config_path=training/faster_rcnn_inception_v2_pets.config
+python model_main.py \
+    --pipeline_config_path=training/faster_rcnn_inception_v2_pets.config \
+    --model_dir=training \
+    --alsologtostderr
 ```
-If everything has been set up correctly, TensorFlow will initialize the training. The initialization can take up to 30 seconds before the actual training begins. When training begins, it will look like this:
-
-<p align="center">
-  <img src="doc/training.jpg">
-</p>
+如果报错`First step cannot be zero`，就把training/faster_rcnn_inception_v2_pets.config中的91行的schedule删掉。
 
 Each step of training reports the loss. It will start high and get lower and lower as training progresses. For my training on the Faster-RCNN-Inception-V2 model, it started at about 3.0 and quickly dropped below 0.8. I recommend allowing your model to train until the loss consistently drops below 0.05, which will take about 40,000 steps, or about 2 hours (depending on how powerful your CPU and GPU are). Note: The loss numbers will be different if a different model is used. MobileNet-SSD starts with a loss of about 20, and should be trained until the loss is consistently under 2.
 

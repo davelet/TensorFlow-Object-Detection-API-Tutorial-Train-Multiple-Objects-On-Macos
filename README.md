@@ -33,7 +33,7 @@
 TensorFlow-GPU使用显卡的张量计算能力进行训练，体验很好，原库使用了。但是Mac并不支持。在他看来，使用GPU训练，加速引子可达8（也就是将CPU的计算时间从24小时缩短到3小时）。
 
 
-## Steps
+## 步骤
 ### 1. 安装TensorFlow-GPU
 
 
@@ -54,12 +54,15 @@ TensorFlow提供了很多识别模型，也就是已经用卷积神经网络训�
   <img src="doc/rcnn_vs_ssd.jpg">
 </p>
 
-You can choose which model to train your objection detection classifier on. If you are planning on using the object detector on a device with low computational power (such as a smart phone or Raspberry Pi), use the SDD-MobileNet model. If you will be running your detector on a decently powered laptop or desktop PC, use one of the RCNN models. 
+你可以自行选择模型：如果是在移动设备上运行较低识别率（比如智能机和树莓派）可以使用SDD-MobileNet，如果要用在强劲PC上就用RCNN模型。
 
-This tutorial will use the Faster-RCNN-Inception-V2 model. [Download the model here.](http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz) Open the downloaded faster_rcnn_inception_v2_coco_2018_01_28.tar.gz file with a file archiver such as WinZip or 7-Zip and extract the faster_rcnn_inception_v2_coco_2018_01_28 folder to the C:\tensorflow1\models\research\object_detection folder. (Note: The model date and version will likely change in the future, but it should still work with this tutorial.)
+我后面会用Faster-RCNN-Inception-V2，[从这里下载](http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz)。把下载文件解压到`~/pythonProjects/py3venv/models/research/object_detection`目录下：
+```
+xxx/object_detection>tar -xzvf faster_rcnn_inception_v2_coco_2018_01_28.tar.gz
+```
 
-#### 2c. Download this tutorial's repository from GitHub
-Download the full repository located on this page (scroll to the top and click Clone or Download) and extract all the contents directly into the C:\tensorflow1\models\research\object_detection directory. (You can overwrite the existing "README.md" file.) This establishes a specific directory structure that will be used for the rest of the tutorial. 
+#### 2c. 下载本库
+把本库也下载到`~/pythonProjects/py3venv/models/research/object_detection`目录。这样目录结构就满足TensorFlow要求了。
 
 This repository contains the images, annotation data, .csv files, and TFRecords needed to train a "Pinochle Deck" playing card detector. You can use these images and data to practice making your own Pinochle Card Detector. It also contains Python scripts that are used to generate the training data. It has scripts to test out the object detection classifier on images, videos, or a webcam feed. You can ignore the \doc folder and its files; they are just there to hold the images used for this readme.
 

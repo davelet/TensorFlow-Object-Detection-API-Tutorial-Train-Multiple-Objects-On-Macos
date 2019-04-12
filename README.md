@@ -16,8 +16,8 @@
 4. [生成训练数据](#4-生成训练数据)
 5. [创建标记映射并配置模型](#5-创建标记映射并配置模型)
 6. [开训](#6-开训)
-7. [导出结果](#7-export-inference-graph)
-8. [测试](#8-use-your-newly-trained-object-detection-classifier)
+7. [导出图文件](#7-导出图文件)
+8. [测试](#8-测试)
 
 [附录：常见问题](#appendix-common-errors)
 
@@ -287,19 +287,22 @@ tensorboard --logdir=training
 然后用浏览器打开`localhost:6006`。步数少的时候不明显
 
 <p align="center">
+  <img src="doc/500.png">
+</p>
+<p align="center">
   <img src="doc/loss_graph.JPG">
 </p>
 
-The training routine periodically saves checkpoints about every five minutes. You can terminate the training by pressing Ctrl+C while in the command prompt window. I typically wait until just after a checkpoint has been saved to terminate the training. You can terminate training and start it later, and it will restart from the last saved checkpoint. The checkpoint at the highest number of steps will be used to generate the frozen inference graph.
+每5分钟会保存一下进程，所以你会看到生成了不少的`model.ckpt`文件。你可以中断训练过程，后面再运行的时间会继续训练。
 
-### 7. Export Inference Graph
-Now that training is complete, the last step is to generate the frozen inference graph (.pb file). From the \object_detection folder, issue the following command, where “XXXX” in “model.ckpt-XXXX” should be replaced with the highest-numbered .ckpt file in the training folder:
+### 7. 导出图文件
+既然训练完成了，最后就该导出图了（.pb文件）。在\object_detection下执行下面的命令，用ckpt文件中的最大索引的文件去生成：
 ```
-python export_inference_graph.py --input_type image_tensor --pipeline_config_path training/faster_rcnn_inception_v2_pets.config --trained_checkpoint_prefix training/model.ckpt-XXXX --output_directory inference_graph
+python export_inference_graph.py --input_type image_tensor --pipeline_config_path training/faster_rcnn_inception_v2_pets.config --trained_checkpoint_prefix training/model.ckpt-26356 --output_directory inference_graph
 ```
-This creates a frozen_inference_graph.pb file in the \object_detection\inference_graph folder. The .pb file contains the object detection classifier.
+这样会在\object_detection\inference_graph下面生成`frozen_inference_graph.pb`文件，这个就是我们的产出！
 
-### 8. Use Your Newly Trained Object Detection Classifier!
+### 8. 测试
 The object detection classifier is all ready to go! I’ve written Python scripts to test it out on an image, video, or webcam feed.
 
 Before running the Python scripts, you need to modify the NUM_CLASSES variable in the script to equal the number of classes you want to detect. (For my Pinochle Card Detector, there are six cards I want to detect, so NUM_CLASSES = 6.)

@@ -270,13 +270,21 @@ python model_main.py \
 ```
 如果报错`First step cannot be zero`，就把training/faster_rcnn_inception_v2_pets.config中的91行的schedule删掉。
 
-Each step of training reports the loss. It will start high and get lower and lower as training progresses. For my training on the Faster-RCNN-Inception-V2 model, it started at about 3.0 and quickly dropped below 0.8. I recommend allowing your model to train until the loss consistently drops below 0.05, which will take about 40,000 steps, or about 2 hours (depending on how powerful your CPU and GPU are). Note: The loss numbers will be different if a different model is used. MobileNet-SSD starts with a loss of about 20, and should be trained until the loss is consistently under 2.
+笔记本上的训练很慢，何况还是没有使用GPU的情形下。
 
-You can view the progress of the training job by using TensorBoard. To do this, open a new instance of Anaconda Prompt, activate the tensorflow1 virtual environment, change to the C:\tensorflow1\models\research\object_detection directory, and issue the following command:
+<p align="center">
+  <img src="doc/mac_train.png">
+</p>
+做为对比，看一下原库的Windows下GPU训练速度，10倍的差距：
+<p align="center">
+  <img src="doc/training.jpg">
+</p>
+
+可以使用TensorBoard看训练进度：在models\research\object_detection目录下执行
 ```
-(tensorflow1) C:\tensorflow1\models\research\object_detection>tensorboard --logdir=training
+tensorboard --logdir=training
 ```
-This will create a webpage on your local machine at YourPCName:6006, which can be viewed through a web browser. The TensorBoard page provides information and graphs that show how the training is progressing. One important graph is the Loss graph, which shows the overall loss of the classifier over time.
+然后用浏览器打开`localhost:6006`。步数少的时候不明显
 
 <p align="center">
   <img src="doc/loss_graph.JPG">

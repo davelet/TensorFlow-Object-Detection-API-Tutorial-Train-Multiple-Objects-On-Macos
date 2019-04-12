@@ -290,6 +290,10 @@ tensorboard --logdir=training
   <img src="doc/500.png">
 </p>
 <p align="center">
+  <img src="doc/1w.png">
+</p>
+下面是原库的曲线：
+<p align="center">
   <img src="doc/loss_graph.JPG">
 </p>
 

@@ -307,21 +307,23 @@ python export_inference_graph.py --input_type image_tensor --pipeline_config_pat
 这样会在\object_detection\inference_graph下面生成`frozen_inference_graph.pb`文件，这个就是我们的产出！
 
 ### 8. 测试
-The object detection classifier is all ready to go! I’ve written Python scripts to test it out on an image, video, or webcam feed.
+现在分类器训练好了，我写了脚本用来测试识别图片、视频、摄像头。
 
-Before running the Python scripts, you need to modify the NUM_CLASSES variable in the script to equal the number of classes you want to detect. (For my Pinochle Card Detector, there are six cards I want to detect, so NUM_CLASSES = 6.)
+测试前需要修改脚本中的NUM_CLASSES变量，这里是6。
 
-To test your object detector, move a picture of the object or objects into the \object_detection folder, and change the IMAGE_NAME variable in the Object_detection_image.py to match the file name of the picture. Alternatively, you can use a video of the objects (using Object_detection_video.py), or just plug in a USB webcam and point it at the objects (using Object_detection_webcam.py).
+测试图片的话，放一张图片到\object_detection目录，并把脚本Object_detection_image.py中的IMAGE_NAME变量改成图片名称。 直接运行文件即可。
 
-To run any of the scripts, type “idle” in the Anaconda Command Prompt (with the “tensorflow1” virtual environment activated) and press ENTER. This will open IDLE, and from there, you can open any of the scripts and run them.
+我训练了10个小时（大概2万步）的识别结果一般：
+<p align="center">
+  <img src="doc/res.png">
+</p>
 
-If everything is working properly, the object detector will initialize for about 10 seconds and then display a window showing any objects it’s detected in the image!
+原库跑了3小时的训练都比我好：
 
 <p align="center">
   <img src="doc/detector2.jpg">
 </p>
 
-If you encounter errors, please check out the Appendix: it has a list of errors that I ran in to while setting up my object detection classifier. You can also trying Googling the error. There is usually useful information on Stack Exchange or in TensorFlow’s Issues on GitHub.
 
 ## Appendix: Common Errors
 It appears that the TensorFlow Object Detection API was developed on a Linux-based operating system, and most of the directions given by the documentation are for a Linux OS. Trying to get a Linux-developed software library to work on Windows can be challenging. There are many little snags that I ran in to while trying to set up tensorflow-gpu to train an object detection classifier on Windows 10. This Appendix is a list of errors I ran in to, and their resolutions.

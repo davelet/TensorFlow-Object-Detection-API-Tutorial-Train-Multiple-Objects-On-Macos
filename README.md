@@ -93,9 +93,22 @@ source ~/pythonProjects/py3venv/bin/activate
 ```
 pip install tensorflow
 ```
-然后安装其他依赖：
+然后安装protobuf:
+
+1. https://github.com/protocolbuffers/protobuf/releases 下载
+2. 解压到任意目录
+3. 进入解压目录执行`./autogen.sh && ./configure && make`
+4. 如果失败尝试执行`brew install autoconf && brew install automake.`然后再跑第三步
+5. 执行以下命令：
 ```
-sudo apt-get install protobuf-compiler python-pil python-lxml python-tk
+$ make check
+$ sudo make install
+$ which protoc
+$ protoc --version
+``` 
+
+安装其他依赖：
+```
 pip install --user Cython
 pip install --user contextlib2
 pip install --user jupyter

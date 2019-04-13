@@ -305,6 +305,10 @@ tensorboard --logdir=training
 <p align="center">
   <img src="doc/1w.png">
 </p>
+训练30个小时（28000多步）时，曲线变化极不明显：
+<p align="center">
+  <img src="doc/2w.png">
+</p>
 下面是原库的曲线：
 <p align="center">
   <img src="doc/loss_graph.JPG">

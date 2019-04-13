@@ -305,7 +305,7 @@ tensorboard --logdir=training
 <p align="center">
   <img src="doc/1w.png">
 </p>
-训练30个小时（28000多步）时，曲线变化极不明显：
+训练近20个小时（28000多步）时，曲线变化极不明显：
 <p align="center">
   <img src="doc/2w.png">
 </p>
@@ -333,6 +333,10 @@ python export_inference_graph.py --input_type image_tensor --pipeline_config_pat
 我训练了10个小时（大概2万步）的识别结果一般：
 <p align="center">
   <img src="doc/res.png">
+</p>
+28000多步时的识别：
+<p align="center">
+  <img src="doc/28862.png">
 </p>
 
 原库跑了3小时的训练都比我好：
